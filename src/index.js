@@ -1,7 +1,10 @@
-const app        = require('express')()
+const express    = require('express')
+const app        = express()
 const brands     = require('./models/brands.js')
 const products   = require('./models/products.js')
 const categories = require('./models/categories.js')
+
+app.use("/static", express.static(__dirname + "/static"));
 
 app.get('/products', async (req, res) => {
   const page         = Number(req.query?.page || 1)
