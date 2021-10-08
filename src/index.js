@@ -78,13 +78,15 @@ app.get('/ping', async (_, res) => {
   res.send('pong');
 })
 
-app.get('/:url', async (req, res) => {
+const notFoundHandler = async (req, res) => {
   res.statusCode = 404
   res.send({
     meta: {},
     data: null
   })
-})
+}
+app.get('/', notFoundHandler)
+app.get('/:url', notFoundHandler)
 
 const PORT = 9001
 app.listen(PORT, () => {
