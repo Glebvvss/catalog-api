@@ -11,7 +11,7 @@ $(cd ../)
 
 docker-compose up -d
 
-echo "Standard passrord value: password"
+echo "Standard password value: password"
 echo "Please wait..."
 sleep 15s
 
