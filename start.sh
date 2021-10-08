@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-docker-compose start -d
+docker-compose stop
+
+docker-compose up -d
