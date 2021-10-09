@@ -17,7 +17,7 @@ echo "Standard password value: password"
 echo "Please wait..."
 sleep 15s
 
-docker exec -it catalog_mysql bash -c "cd /myapp/mysql && sh bootstrap.sh"
+sh migrate.sh
 
 touch .installed
 echo "Environment is ready to use."
