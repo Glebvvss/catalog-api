@@ -2,8 +2,10 @@ const mysql = require('mysql-await')
 const { connection } = require('../core/db')
 
 class Categories {
-  async getCategoryById(id) {
-    const result = await connection().awaitQuery(
+  async findOne(id) {
+    const connect = await connection()
+
+    const result = await connect.awaitQuery(
       'SELECT * FROM ok_categories WHERE id = ? LIMIT 1', [id]
     )
 
@@ -14,8 +16,9 @@ class Categories {
     return result[0]
   }
 
-  async getCategories({ limit = 1000 } = {}) {
-    return await connection().awaitQuery(
+  async findAll({ limit = 1000 } = {}) {
+    const connect = await connection()
+    return await connect.awaitQuery(
       'SELECT * FROM ok_categories LIMIT ?',
       [limit]
     )

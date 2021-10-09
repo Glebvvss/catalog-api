@@ -1,8 +1,9 @@
 const { connection } = require('../core/db')
 
 class Brands {
-  async getBrandById(id) {
-    const result = await connection().awaitQuery(
+  async findOne(id) {
+    const connect = await connection()
+    const result  = await connect.awaitQuery(
       'SELECT * FROM ok_brands WHERE id = ? LIMIT 1', [id]
     )
 
@@ -13,8 +14,9 @@ class Brands {
     return result[0]
   }
 
-  async getBrands({ limit = 1000 } = {}) {
-    return await connection().awaitQuery(
+  async findAll({ limit = 1000 } = {}) {
+    const connect = await connection()
+    return await connect.awaitQuery(
       'SELECT * FROM ok_brands LIMIT ?',
       [limit]
     )
