@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-#!/usr/bin/env bash
-
 if test -f './.installed'; then
   docker-compose up -d
   echo "Environment is ready to use."
