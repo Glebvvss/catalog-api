@@ -1,5 +1,4 @@
-const mysql          = require('mysql-await')
-const { connection } = require('../core/db')
+const { sqlQuery } = require('../core/db')
 const {
   host,
   staticPath
@@ -12,9 +11,7 @@ const prepareProduct = product => {
 
 class Products {
   async findOne(id) {
-    const connect = await connection()
-
-    const result = await connect.awaitQuery(`
+    const result = await sqlQuery(`
       SELECT
         ok_products.*,
         ok_images.filename,
@@ -78,8 +75,7 @@ class Products {
     variables.push(itemsPerPage)
     variables.push((page - 1) * itemsPerPage)
 
-    const connect  = await connection()
-    const products = await connect.awaitQuery(query, variables)
+    const products = await sqlQuery(query, variables)
     return products.map(prepareProduct)
   }
 }
