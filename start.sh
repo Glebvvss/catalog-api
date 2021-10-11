@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 if test -f './.installed'; then
+  $(cd ./src && npm ci)
   sudo docker-compose up -d
   echo "Environment is ready to use."
   echo "Application can be accessed by http://localhost:9001"
